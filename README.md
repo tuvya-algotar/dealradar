@@ -8,8 +8,6 @@ DealRadar is a self-contained AI-powered sales intelligence system that aggregat
 
 DealRadar is designed with a decentralized, multi-agent parallel data-gathering architecture overseen by a central pipeline runner, backed by a persistent SQLite database for historical intelligence tracking.
 
-```mermaid
-graph TD
     A[Streamlit Web UI / CLI] -->|Trigger Research| B[Pipeline Coordinator (main.py)]
     B -->|Parallel Execution via Threads| C1[Web Scraper Agent]
     B -->|Parallel Execution via Threads| C2[News Agent]
@@ -32,7 +30,6 @@ graph TD
     B -->|Compile PDF/HTML Brief| H[PDF/HTML Renderer]
     
     G -.->|Query Historical Briefs| A
-```
 
 ### Core Architecture Components
 
