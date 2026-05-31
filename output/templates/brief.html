@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 11px;
+    color: #1a1a2e;
+    background: #ffffff;
+    padding: 0;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: white;
+    padding: 24px 32px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .header-left .brand { font-size: 10px; font-weight: 500; opacity: 0.6; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .header-left .title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+  .header-left .subtitle { font-size: 12px; opacity: 0.75; margin-top: 4px; }
+  .header-right { text-align: right; }
+  .header-right .score-label { font-size: 9px; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; }
+  .score-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .score-hot { background: #ff4757; color: white; }
+  .score-warm { background: #ffa502; color: white; }
+  .score-cold { background: #747d8c; color: white; }
+
+  /* SNAPSHOT */
+  .snapshot {
+    background: #f8f9ff;
+    border-left: 4px solid #302b63;
+    padding: 14px 20px;
+    margin: 20px 32px;
+    border-radius: 0 8px 8px 0;
+  }
+  .snapshot p { font-size: 11.5px; line-height: 1.7; color: #333; }
+
+  /* SECTIONS */
+  .section { margin: 0 32px 18px; }
+  .section-title {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #302b63;
+    border-bottom: 1px solid #e0e0f0;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+
+  /* SIGNALS */
+  .signal-card {
+    background: #fff;
+    border: 1px solid #e8e8f0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 7px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .signal-icon { font-size: 14px; min-width: 20px; }
+  .signal-body { flex: 1; }
+  .signal-text { font-weight: 600; font-size: 11px; color: #1a1a2e; margin-bottom: 2px; }
+  .signal-impl { font-size: 10px; color: #555; line-height: 1.5; }
+  .signal-meta { display: flex; gap: 6px; margin-top: 5px; align-items: center; }
+  .source-tag {
+    font-size: 9px;
+    background: #f0f0ff;
+    color: #302b63;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+  .confidence-badge {
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .conf-high { background: #d4edda; color: #155724; }
+  .conf-medium { background: #fff3cd; color: #856404; }
+  .conf-low { background: #f8d7da; color: #721c24; }
+  .confidence-reason { font-size: 9px; color: #888; font-style: italic; }
+
+  /* TALKING POINTS */
+  .tp-card {
+    background: linear-gradient(135deg, #f8f9ff, #fff);
+    border: 1px solid #d0d0f0;
+    border-radius: 8px;
+    padding: 11px 14px;
+    margin-bottom: 7px;
+    border-left: 3px solid #302b63;
+  }
+  .tp-number { font-size: 9px; color: #302b63; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; }
+  .tp-text { font-size: 11px; color: #1a1a2e; line-height: 1.6; font-weight: 500; margin-bottom: 5px; }
+  .tp-why { font-size: 10px; color: #666; font-style: italic; }
+  .tp-meta { display: flex; gap: 6px; margin-top: 6px; align-items: center; }
+
+  /* TWO COLUMN LAYOUT */
+  .two-col { display: flex; gap: 20px; margin: 0 32px 18px; }
+  .col { flex: 1; }
+
+  /* EMAIL SUBJECTS */
+  .email-card {
+    background: #fff;
+    border: 1px solid #e8e8f0;
+    border-radius: 6px;
+    padding: 9px 12px;
+    margin-bottom: 6px;
+  }
+  .email-label { font-size: 8px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+  .email-subject { font-size: 11px; font-weight: 600; color: #1a1a2e; }
+  .email-approach { font-size: 9px; color: #302b63; margin-top: 2px; }
+
+  /* PERSONA */
+  .persona-card {
+    background: #fff;
+    border: 1px solid #e8e8f0;
+    border-radius: 6px;
+    padding: 9px 12px;
+  }
+  .persona-title { font-size: 13px; font-weight: 700; color: #302b63; }
+  .persona-why { font-size: 10px; color: #555; margin-top: 4px; line-height: 1.5; }
+
+  /* RISKS */
+  .risk-item {
+    font-size: 10px;
+    color: #721c24;
+    background: #fff5f5;
+    border-left: 3px solid #f5c6cb;
+    padding: 6px 10px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 5px;
+  }
+  .risk-item::before { content: "⚠ "; }
+
+  /* FOOTER */
+  .footer {
+    background: #f8f9ff;
+    border-top: 1px solid #e0e0f0;
+    padding: 10px 32px;
+    text-align: center;
+    font-size: 9px;
+    color: #888;
+    margin-top: 10px;
+  }
+
+  @page { margin: 0; size: A4; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="brand">🎯 DealRadar · Pre-Call Brief</div>
+    <div class="title">{{ brief.company_name }}</div>
+    <div class="subtitle">{{ domain }} · Generated {{ generated_date }}</div>
+  </div>
+  <div class="header-right">
+    <div class="score-label">Deal Readiness</div>
+    <div class="score-badge score-{{ brief.deal_readiness_score.label | lower }}">
+      {{ brief.deal_readiness_score.score }}/10 · {{ brief.deal_readiness_score.label }}
+    </div>
+    <div style="font-size:9px; opacity:0.6; margin-top:6px;">{{ brief.deal_readiness_score.reasoning }}</div>
+  </div>
+</div>
+
+<!-- COMPANY SNAPSHOT -->
+<div class="snapshot">
+  <p>{{ brief.company_snapshot }}</p>
+</div>
+
+<!-- KEY SIGNALS -->
+<div class="section">
+  <div class="section-title">📡 Intelligence Signals</div>
+  {% for signal in brief.key_signals %}
+  <div class="signal-card">
+    <div class="signal-icon">
+      {% if signal.source == 'linkedin' %}👥
+      {% elif signal.source == 'news' %}📰
+      {% elif signal.source == 'techstack' %}⚙️
+      {% else %}🌐{% endif %}
+    </div>
+    <div class="signal-body">
+      <div class="signal-text">{{ signal.signal }}</div>
+      <div class="signal-impl">{{ signal.implication }}</div>
+      <div class="signal-meta">
+        <span class="source-tag">{{ signal.source }}</span>
+        <span class="confidence-badge conf-{{ signal.confidence }}">{{ signal.confidence }} confidence</span>
+        <span class="confidence-reason">{{ signal.confidence_reason }}</span>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- TALKING POINTS -->
+<div class="section">
+  <div class="section-title">💬 Personalized Talking Points</div>
+  {% for tp in brief.talking_points %}
+  <div class="tp-card">
+    <div class="tp-number">Point {{ loop.index }}</div>
+    <div class="tp-text">"{{ tp.point }}"</div>
+    <div class="tp-why">Why it works: {{ tp.why_it_works }}</div>
+    <div class="tp-meta">
+      <span class="confidence-badge conf-{{ tp.confidence }}">{{ tp.confidence }} confidence</span>
+      <span class="confidence-reason">{{ tp.confidence_reason }}</span>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- TWO COLUMN: EMAIL + PERSONA -->
+<div class="two-col">
+  <div class="col">
+    <div class="section-title">✉️ Email Subject Lines</div>
+    {% for email in brief.email_subject_lines %}
+    <div class="email-card">
+      <div class="email-label">Option {{ loop.index }} · {{ email.approach }}</div>
+      <div class="email-subject">{{ email.subject }}</div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="col">
+    <div class="section-title">🎯 Best Persona to Target</div>
+    <div class="persona-card">
+      <div class="persona-title">{{ brief.best_persona_to_target.title }}</div>
+      <div class="persona-why">{{ brief.best_persona_to_target.why }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- RISKS -->
+<div class="section">
+  <div class="section-title">⚠️ Risk Factors</div>
+  {% for risk in brief.risk_factors %}
+  <div class="risk-item">{{ risk }}</div>
+  {% endfor %}
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Generated by DealRadar · {{ domain }} · {{ generated_date }}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+# ===========================================================================
+# DealRadar Git Ignore Configuration
+# ===========================================================================
+
+# 1. Environment & Credentials (CRITICAL SECURITY)
+.env
+.env.local
+.env.*.local
+
+# 2. Local Databases & Memory Caches
+*.db
+*.sqlite
+cache/*.db
+cache/*.sqlite
+
+# 3. Generated Reports & Outputs (Preserving directory structure via .gitkeep)
+reports/*
+!reports/.gitkeep
+
+# 4. Python Compilation & Runtime Caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# 5. Virtual Environments (Standard Python environments)
+venv/
+.venv/
+env/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# 6. OS & IDE Specific Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp

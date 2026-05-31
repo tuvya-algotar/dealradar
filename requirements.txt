@@ -1,0 +1,11 @@
+streamlit
+anthropic
+requests
+beautifulsoup4
+lxml
+python-dotenv
+weasyprint
+jinja2
+newsapi-python
+rich
+linkdapi
